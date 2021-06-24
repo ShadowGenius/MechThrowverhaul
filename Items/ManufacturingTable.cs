@@ -33,6 +33,12 @@ namespace MechThrowverhaul.Items
             recipe.AddIngredient(ItemID.Wood, 15);
             recipe.SetResult(this);
             recipe.AddRecipe();
+
+            ModRecipe recipe2 = new ModRecipe(mod);
+            recipe2.AddIngredient(ItemID.LeadBar, 10);
+            recipe2.AddIngredient(ItemID.Wood, 15);
+            recipe2.SetResult(this);
+            recipe2.AddRecipe();
         }
     }
 }
