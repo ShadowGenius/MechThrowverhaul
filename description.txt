@@ -1,0 +1,24 @@
+Mechanical Throwverhaul
+
+Improving the Throwing Class a Little Differently
+
+
+
+The throwing class was removed due to being mechanically too similar to the Ranger, as well as being meant to only be an early-game subclass.
+
+This mod aims (haha, get it?) to improve and expand upon the throwing class and make it more unique from the Ranger.
+
+Currently, it converts consumable throwing weapons to a new system in which the item itself is no longer consumed, but there is still an ammunition count associated with the item. This allows them to gain modifiers. (Currently, they can gain universal and ranged modifiers) The maximum amount of "ammo" in a thrown weapon is 100, which differs from the original 999.
+
+
+Previously consumable thrown weapons will have a 100% chance to drop themselves as "ammo," which can be picked up to refill your throwing weapons but can't be picked up as actual items. Additionally, you can completely refill thrown weapons (for a fee) or recycle your weapons through a new tile, the manufacturing table!
+
+
+These changes are meant to emphasize mobility, in which throwers (please suggest a better name!) must constantly dodge attacks and effectively juggle their limited ammo while in combat. Additionally, in a multiplayer environment, the thrower would fill in the role of a different kind of tank. To contrast the melee warrior face-tanking enemy attacks, the thrower would attract enemies' attention and kite them away from allies.
+
+
+Plans:
+- Unique modifiers for thrown weapons
+- Armor, accessories, and weapons throughout progression that build upon the "throwverhauled" system, including:
+	- Armor and weapons that will make you glass cannons with higher damage but lower defense
+	- A "new" weapon type, boomerangs! These thrown variants of boomerangs act similarly to stacked boomerangs like light discs but can also pick up thrown ammo off the ground!
