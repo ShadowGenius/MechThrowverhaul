@@ -26,19 +26,21 @@ namespace MechThrowverhaul.Items
             item.createTile = ModContent.TileType<Tiles.ManufacturingTable>();
         }
 
-        public override void AddRecipes()
-        {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.IronBar, 10);
-            recipe.AddIngredient(ItemID.Wood, 15);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+        //public override void AddRecipes()
+        //{
+        //    ModRecipe recipe = new ModRecipe(mod);
+        //    recipe.AddIngredient(ItemID.IronBar, 10);
+        //    recipe.AddIngredient(ItemID.Wood, 15);
+        //    recipe.AddTile(TileID.Anvils);
+        //    recipe.SetResult(this);
+        //    recipe.AddRecipe();
 
-            ModRecipe recipe2 = new ModRecipe(mod);
-            recipe2.AddIngredient(ItemID.LeadBar, 10);
-            recipe2.AddIngredient(ItemID.Wood, 15);
-            recipe2.SetResult(this);
-            recipe2.AddRecipe();
-        }
+        //    ModRecipe recipe2 = new ModRecipe(mod);
+        //    recipe2.AddIngredient(ItemID.LeadBar, 10);
+        //    recipe2.AddIngredient(ItemID.Wood, 15);
+        //    recipe.AddTile(TileID.Anvils);
+        //    recipe2.SetResult(this);
+        //    recipe2.AddRecipe();
+        //}
     }
 }
