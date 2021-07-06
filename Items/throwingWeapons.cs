@@ -109,20 +109,23 @@ namespace MechThrowverhaul.Items
                 {
                     return false;
                 }
-
-                // If the player has a chance not to consume thrown weapons, apply it here. Consumes 1 ammo from the weapon otherwise
-                bool consume = true;
-                if ((player.thrownCost50 && Main.rand.Next(100) < 50) || (player.thrownCost33 && Main.rand.Next(100) < 33))
-                {
-                    consume = false;
-                }
-                if (consume)
-                {
-                    throwStack--;
-                }
             }
-
             return base.CanUseItem(item, player);
+        }
+
+        public override bool Shoot(Item item, Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+        {
+            // If the player has a chance not to consume thrown weapons, apply it here. Consumes 1 ammo from the weapon otherwise
+            bool consume = true;
+            if ((player.thrownCost50 && Main.rand.Next(100) < 50) || (player.thrownCost33 && Main.rand.Next(100) < 33))
+            {
+                consume = false;
+            }
+            if (consume)
+            {
+                throwStack--;
+            }
+            return base.Shoot(item, player, ref position, ref speedX, ref speedY, ref type, ref damage, ref knockBack);
         }
 
         // This functionality will be moved to an accessory later down the line
