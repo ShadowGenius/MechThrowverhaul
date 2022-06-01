@@ -1,6 +1,7 @@
 ﻿using MechThrowverhaul.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -99,10 +100,14 @@ namespace MechThrowverhaul.UI
 
         private void OnButtonClickStore(UIMouseEvent evt, UIElement listeningElement)
         {
-            localPlayer.GetModPlayer<ThrowPlayer>().storedStock += throwingWeapon.throwStack;
+            double stock = throwingWeapon.throwStack;
+            double multiplier = Math.Pow(vanillaItemSlot.Item.rare + 1, 2) / 100;
+            if (multiplier > 1) multiplier = 1;
+            stock *= multiplier;
+            localPlayer.GetModPlayer<ThrowPlayer>().storedStock += (int)stock;
             throwingWeapon.throwStack = 0;
 
-            Main.PlaySound(SoundID.Item37, -1, -1);
+            Main.PlaySound(SoundID.Item37);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
