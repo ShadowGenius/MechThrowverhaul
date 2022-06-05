@@ -9,7 +9,6 @@ namespace MechThrowverhaul
 {
     public class ThrowPlayer : ModPlayer
     {
-        public int storedStock;
         public Vector2 ManufacturingTable;
         public bool UIOpen;
 
@@ -39,19 +38,6 @@ namespace MechThrowverhaul
                 }
             }
             return stock;
-        }
-
-        public override TagCompound Save()
-        {
-            return new TagCompound
-            {
-                {"storedStock", storedStock}
-            };
-        }
-
-        public override void Load(TagCompound tag)
-        {
-            storedStock = tag.GetInt("storedStock");
         }
     }
 }

@@ -89,17 +89,24 @@ namespace MechThrowverhaul.Projectiles
 
         public override bool PreKill(Projectile projectile, int timeLeft)
         {
-            return !prediction; // if the projectile is a prediction projectile, vanilla and some modded "kill" code won't be called
-        }
-
-        public override void Kill(Projectile projectile, int timeLeft)
-        {
             if (throwverhauled && Main.myPlayer == projectile.owner)
             {
                 // Throwverhauled projectiles drop their corresponding items as ammo instead of actual items
                 int item = Item.NewItem(projectile.getRect(), itemType, 1);
                 Main.item[item].GetGlobalItem<ThrowingWeapons>().droppedAmmo = true;
+                //return false;
             }
+            return !prediction; // if the projectile is a prediction projectile, vanilla and some modded "kill" code won't be called
+        }
+
+        public override void Kill(Projectile projectile, int timeLeft)
+        {
+            //if (throwverhauled && Main.myPlayer == projectile.owner)
+            //{
+            //    // Throwverhauled projectiles drop their corresponding items as ammo instead of actual items
+            //    int item = Item.NewItem(projectile.getRect(), itemType, 1);
+            //    Main.item[item].GetGlobalItem<ThrowingWeapons>().droppedAmmo = true;
+            //}
         }
     }
 }

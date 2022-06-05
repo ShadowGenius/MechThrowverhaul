@@ -1,7 +1,6 @@
 ﻿using MechThrowverhaul.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -16,7 +15,6 @@ namespace MechThrowverhaul.UI
 	{
 		public VanillaItemSlotWrapper vanillaItemSlot;
         public UIHoverImageButton RestockButton;
-        public UIHoverImageButton StoreButton;
 
         const int slotX = 50;
         const int slotY = 270;
@@ -42,14 +40,6 @@ namespace MechThrowverhaul.UI
                 Top = { Pixels = slotY}
             };
             RestockButton.OnClick += OnButtonClickRestock;
-            
-
-            StoreButton = new UIHoverImageButton(ModContent.GetTexture("MechThrowverhaul/UI/StoreButton"), "Recycle")
-            {
-                Left = { Pixels = slotX + 50 },
-                Top = { Pixels = slotY + 50 }
-            };
-            StoreButton.OnClick += OnButtonClickStore;
         }
 
 		// OnDeactivate is called when the UserInterface switches to a different state. In this mod, we switch between no state (null) and this state (ExamplePersonUI).
@@ -88,26 +78,9 @@ namespace MechThrowverhaul.UI
                 Main.LocalPlayer.BuyItem(price, -1);
 
                 throwingWeapon.throwStack = vanillaItemSlot.Item.GetGlobalItem<ThrowingWeapons>().maxStack;
-                localPlayer.GetModPlayer<ThrowPlayer>().storedStock -= needed;
-                if (localPlayer.GetModPlayer<ThrowPlayer>().storedStock < 0)
-                {
-                    localPlayer.GetModPlayer<ThrowPlayer>().storedStock = 0;
-                }
 
                 Main.PlaySound(SoundID.Item37, -1, -1);
             }
-        }
-
-        private void OnButtonClickStore(UIMouseEvent evt, UIElement listeningElement)
-        {
-            double stock = throwingWeapon.throwStack;
-            double multiplier = Math.Pow(vanillaItemSlot.Item.rare + 1, 2) / 100;
-            if (multiplier > 1) multiplier = 1;
-            stock *= multiplier;
-            localPlayer.GetModPlayer<ThrowPlayer>().storedStock += (int)stock;
-            throwingWeapon.throwStack = 0;
-
-            Main.PlaySound(SoundID.Item37);
         }
 
         protected override void DrawSelf(SpriteBatch spriteBatch)
@@ -121,7 +94,7 @@ namespace MechThrowverhaul.UI
             {
                 throwingWeapon = vanillaItemSlot.Item.GetGlobalItem<ThrowingWeapons>();
                 needed = throwingWeapon.maxStack - throwingWeapon.throwStack;
-                price = (needed - localPlayer.GetModPlayer<ThrowPlayer>().storedStock) * throwingWeapon.originalValue;
+                price = needed * throwingWeapon.originalValue;
                 if (price < 0)
                 {
                     price = 0;
@@ -147,10 +120,7 @@ namespace MechThrowverhaul.UI
                 ItemSlot.DrawSavings(Main.spriteBatch, slotX + 130, Main.instance.invBottom, true);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, costText, new Vector2(slotX + 80, slotY + 10), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, coinsText, new Vector2(slotX + 80 + Main.fontMouseText.MeasureString(costText).X, (float)slotY + 10), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
-                ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, "Stock: " + localPlayer.GetModPlayer<ThrowPlayer>().storedStock.ToString(), new Vector2(slotX + 80, (float)slotY + 70), Color.White, 0f, Vector2.Zero, Vector2.One, -1f, 2f);
-
                 Append(RestockButton);
-                Append(StoreButton);
             }
             else
             {
@@ -158,7 +128,6 @@ namespace MechThrowverhaul.UI
                 ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, message, new Vector2(slotX + 50, slotY), new Color(Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor, Main.mouseTextColor), 0f, Vector2.Zero, Vector2.One, -1f, 2f);
                 
                 RestockButton.Remove();
-                StoreButton.Remove();
             }
         }
 	}
