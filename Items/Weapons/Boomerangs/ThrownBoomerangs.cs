@@ -15,6 +15,7 @@ namespace MechThrowverhaul.Items.Boomerangs
             item.noUseGraphic = true;
             item.consumable = true;
             item.maxStack = 5;
+            item.GetGlobalItem<ThrowingWeapons>().boomerang = true;
             item.GetGlobalItem<ThrowingWeapons>().maxStack = 5;
             base.SetDefaults();
         }

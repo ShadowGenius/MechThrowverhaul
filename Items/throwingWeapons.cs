@@ -14,6 +14,7 @@ namespace MechThrowverhaul.Items
         public override bool CloneNewInstances => true;
 
         public bool throwverhauled;
+        public bool boomerang;
         public bool drawStack = false;
         public int throwStack = 1;
         public int maxStack = 100;
@@ -38,8 +39,15 @@ namespace MechThrowverhaul.Items
                 item.consumable = false;
                 item.maxStack = maxStack;
                 throwverhauled = true;
-                originalValue = item.value;
-                item.value = originalValue * maxStack;
+                if (boomerang)
+                {
+                    originalValue = item.value / maxStack;
+                }
+                else
+                {
+                    originalValue = item.value;
+                    item.value = originalValue * maxStack;
+                }
             }
             base.SetDefaults(item);
         }
